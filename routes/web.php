@@ -6,6 +6,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PendataanController;
 use App\Http\Controllers\PenindakanController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\AjaxController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,3 +60,13 @@ Route::get('/dashboard', function(){
         "title" => "Dashboard",
     ]);
 });
+
+Route::get('pendaftaran/{id}/details', 'pendaftaranController@details')->name('pendaftaran.details');
+Route::get('/jsonpendaftaran', [AjaxController::class, 'getjsonpendaftaran'])->name('jsonpendaftaran');
+Route::post('/validasi', [AjaxController::class, 'validasi'])->name('validasi');
+
+
+
+// pendaftarant('/pendataan/create}', [PendataanController::class, "create"])->name('pendataan')->middleware('auth');
+// Route::get('admin/invoice/create','InvoiceController@create');
+// Route::get('admin/api/product','InvoiceController@getAutocompleteData'); 

@@ -31,6 +31,7 @@
   <link href="{{ asset("assets/vendor/quill/quill.bubble.css") }}" rel="stylesheet">
   <link href="{{ asset("assets/vendor/remixicon/remixicon.css") }}" rel="stylesheet">
   <link href="{{ asset("assets/vendor/simple-datatables/style.css") }}" rel="stylesheet">
+  <link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
 
   <!-- Template Main CSS File -->
   <link href="{{ asset("assets/css/mystyle.css") }}" rel="stylesheet">

@@ -16,16 +16,19 @@
   </thead>
 </thead>
 <tbody>
+  @foreach ($pendataans as $pendataan)
+      
   <tr>
-    <td>1,001</td>
-    <td>random</td>
-    <td>data</td>
-    <td>data</td>
-    <td>data</td>
-    <td>placeholder</td>
-    <td>text</td>
-    <td>text</td>
+    <td>{{  $loop->iteration }}</td>
+    <td>{{ $pendataan->created_at }}</td>
+    <td>{{ $pendataan->pengemudi }}</td>
+    <td>{{ $pendataan->pendaftaran->no_reg_kendaraan }}</td>
+    <td>{{ $pendataan->pendaftaran->no_uji }}</td>
+    <td>nn</td>
+    <td>{{ $pendataan->user->name }}</td> 
+    <td>action</td> 
   </tr>
+  @endforeach
 </tbody>
 </table>
 <!-- End Table with stripped rows -->

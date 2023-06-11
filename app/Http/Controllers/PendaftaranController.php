@@ -6,6 +6,8 @@ use App\Models\pendaftaran;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
+use Illuminate\Support\Facades\DB;
+
 class PendaftaranController extends Controller
 {
     /**
@@ -15,10 +17,14 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
+        $users = DB::table('pendaftarans')
+        ->leftJoin('users', 'pendaftarans.user_id', '=', 'users.id')
+        ->get();
+
         $data = [
             'content' => 'admin/pendaftaran/index',
             'title' => 'Pendaftaran',
-            'pendaftarans' => Pendaftaran::all(),
+            'pendaftarans' => $users,
         ];
         return view('layouts.wrapper', $data );
     }
@@ -81,9 +87,10 @@ class PendaftaranController extends Controller
             'kls_jalan' => 'required',
         ]);
 
+        $data['user_id']=auth()->user()->id;
         Pendaftaran::create($data);
         Alert::success('Success', 'Data Berhasil Ditambahkan');
-        return redirect('/pendaftaran');
+        return redirect('/pendataan/create');
     }
 
     /**
@@ -166,8 +173,8 @@ class PendaftaranController extends Controller
         ]);
         
         $pendaftaran->update($data);
-        Alert::success('Success', 'Data Berhasil Diupdate');
-        return redirect('/pendaftaran');
+        Alert::success('Success', 'Data Berhasil Diupdate'); //tambahkan direct link
+        return redirect('/pendataan/create/' . "1");
     }
 
     /**
@@ -184,4 +191,8 @@ class PendaftaranController extends Controller
         Alert::success('Success', 'Data Berhasil Dihapus');
         return redirect('/pendaftaran');
     }
+
+
+
+
 }

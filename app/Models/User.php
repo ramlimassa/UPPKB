@@ -3,10 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Pendataan;
+use App\Models\Pendaftaran;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -46,5 +48,15 @@ class User extends Authenticatable
     // public function getRouteKeyName(){
     //     return 'username';
     // }
+
+    public function pendaftaran()
+    {
+        return $this->hasMany(Pendaftaran::class);
+    }
+
+    public function pendataan()
+    {
+        return $this->hasMany(Pendataan::class);
+    }
 }
 

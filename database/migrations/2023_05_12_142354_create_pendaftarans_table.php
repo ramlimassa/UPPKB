@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('pendaftarans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->string('namaPK');
             $table->text('alamatPK')->nullable();
             $table->string('no_uji')->nullable();

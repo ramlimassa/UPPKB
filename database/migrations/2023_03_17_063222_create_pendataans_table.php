@@ -15,10 +15,28 @@ return new class extends Migration
     {
         Schema::create('pendataans', function (Blueprint $table) {
             $table->id();
-            $table->string('no_kendaraan');
-            $table->string('no_uji');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->foreignId('pendaftaran_id');
+            $table->foreignId('user_id');
+            $table->integer('berat');
+            $table->string('kbbk');
+            $table->string('kbbp');
+            $table->string('panjang');
+            $table->string('kel_panjang');
+            $table->string('lebar');
+            $table->string('kel_lebar');
+            $table->string('tinggi');
+            $table->string('kel_tinggi');
+            $table->string('foh');
+            $table->string('kel_foh');
+            $table->string('roh');
+            $table->string('kel_roh');
+            $table->string('mengangkut');
+            $table->string('dari');
+            $table->string('tujuan');
+            $table->string('pengemudi');
+            $table->string('sim');
+            $table->string('kelengkapan_berkas');
+            $table->string('pelanggaran');
             $table->timestamps();
         });
     }

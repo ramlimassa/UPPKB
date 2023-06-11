@@ -6,8 +6,9 @@
     <tr>
         <th scope="col">#</th>
         <th scope="col">Nama Pemilik</th>
-        <th scope="col">Nomor Kendaraan</th>
+        <th scope="col">QR Code <br>No. Buku Uji</th>
         <th scope="col">Nomor Buku Uji</th>
+        <th scope="col">Nomor Kendaraan</th>
         <th scope="col">Jenis Kendaraan</th>
         <th scope="col">User</th>
         <th scope="col">Action</th>
@@ -19,10 +20,11 @@
   <tr>
     <td>{{ $loop->iteration }}</td>
     <td>{{ $pendaftaran->namaPK }}</td>
-    <td>{{ $pendaftaran->no_reg_kendaraan }}</td>
+    <td>{{ QrCode::generate( $pendaftaran->no_uji ); }}</td>
     <td>{{ $pendaftaran->no_uji }}</td>
+    <td>{{ $pendaftaran->no_reg_kendaraan }}</td>
     <td>{{ $pendaftaran->jenis }}</td>
-    <td>{{ $pendaftaran->tipe }}</td>
+    <td>{{ $pendaftaran->name }}</td>
     <td>
       <a href="/pendaftaran/{{ $pendaftaran->id }}" class="badge bg-info"><i class="bi bi-eye"></i></a>
       <a href="/pendaftaran/{{ $pendaftaran->id }}/edit" class="badge bg-warning"><i class="bi bi-pencil-square"></i></a>
