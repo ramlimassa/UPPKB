@@ -11,7 +11,32 @@ class Pendataan extends Model
 {
     use HasFactory;
 
+    // protected $table = ['pendataans'];
     protected $guarded = ['id'];
+    protected $fillable = [
+        'pendaftaran_id',
+        'user_id',
+        'berat',
+        'kbbk',
+        'kbbp',
+        'panjang',
+        'kel_panjang',
+        'lebar',
+        'kel_lebar',
+        'tinggi',
+        'kel_tinggi',
+        'foh',
+        'kel_foh',
+        'roh',
+        'kel_roh',
+        'mengangkut',
+        'dari',
+        'tujuan',
+        'pengemudi',
+        'kelengkapan_berkas',
+        'sim',
+        'pelanggaran',
+    ];
 
     public function user()
     {

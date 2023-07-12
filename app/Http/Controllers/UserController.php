@@ -74,11 +74,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //get post by ID
-        $user = User::findOrFail($id);
-
-        //render user data
-        return $user;
+        
     }
 
     /**

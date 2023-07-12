@@ -32,6 +32,7 @@
   <link href="{{ asset("assets/vendor/remixicon/remixicon.css") }}" rel="stylesheet">
   <link href="{{ asset("assets/vendor/simple-datatables/style.css") }}" rel="stylesheet">
   <link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
   <!-- Template Main CSS File -->
   <link href="{{ asset("assets/css/mystyle.css") }}" rel="stylesheet">

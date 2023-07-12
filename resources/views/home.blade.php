@@ -1,11 +1,3 @@
-{{-- @extends('layouts.main')
-
-@section('container')
-
-  <h1>Selamat Datang di Sistem Informasi Pengolahan Data UPPKB</h1>
-
-@endsection --}}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +8,6 @@
   <title>UPPKB | <?= $title; ?></title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  {{-- <link href="assets/img/favicon.png" rel="icon"> --}}
-  {{-- <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> --}}
 
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/pavicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/pavicon/favicon-32x32.png">
@@ -66,7 +54,6 @@
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
           <li><a class="nav-link scrollto" href="#services">Kabar Terbaru</a></li>
-          <li><a class="nav-link scrollto " href="#team">Profile</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -87,17 +74,9 @@
       <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
         <h2>Sistem Informasi Pengolahan Data<br> <span style="text-decoration: none;font-size: 20px;color: #fff;"> Unit Pelaksana Penimbangan Kendaraan Bermotor <br> (UPPKB) </span></h2>
         <div>
-          {{-- <button type="button" class="btn-get-started scrollto" data-bs-toggle="modal" data-bs-target="#login">
-            Login
-          </button> --}}
-          <!-- Button trigger modal -->
           <button type="button" class="btn btn-get-started scrollto" data-bs-toggle="modal" data-bs-target="#modalLogin">
             Login
           </button>
-          
-          {{-- <a href="#javascript:void(0)" onclick="login_modal();" class="btn-get-started scrollto">Login</a> --}}
-          {{-- <a href="" onclick="login_modal();" class="btn-get-started">Login</a> --}}
-          {{-- <a href="#services" class="btn-services scrollto">Our Services</a> --}}
         </div>
       </div>
 
@@ -164,27 +143,6 @@
             </p>
           </div>
         </div>
-
-        {{-- <div class="row about-extra">
-          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left">
-            <img src="assets/img/about-extra-2.svg" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-right">
-            <h4>Neque saepe temporibus repellat ea ipsum et. Id vel et quia tempora facere reprehenderit.</h4>
-            <p>
-              Delectus alias ut incidunt delectus nam placeat in consequatur. Sed cupiditate quia ea quis. Voluptas nemo qui aut distinctio. Cumque fugit earum est quam officiis numquam. Ducimus corporis autem at blanditiis beatae incidunt sunt.
-            </p>
-            <p>
-              Voluptas saepe natus quidem blanditiis. Non sunt impedit voluptas mollitia beatae. Qui esse molestias. Laudantium libero nisi vitae debitis. Dolorem cupiditate est perferendis iusto.
-            </p>
-            <p>
-              Eum quia in. Magni quas ipsum a. Quis ex voluptatem inventore sint quia modi. Numquam est aut fuga mollitia exercitationem nam accusantium provident quia.
-            </p>
-          </div>
-
-        </div> --}}
-
       </div>
     </section><!-- End About Section -->
 
@@ -197,143 +155,9 @@
           <p>Informasi atau berita terkait Unit Pelaksana Penimbangan Kendaraan Bermotor (UPPKB) akan dipublikasikan disini.</p>
         </header>
 
-        {{-- <div class="row justify-content-center">
-
-          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
-            <div class="box">
-              <div class="icon"><i class="bi bi-briefcase" style="color: #ff689b;"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
-            <div class="box">
-              <div class="icon"><i class="bi bi-card-checklist" style="color: #e9bf06;"></i></div>
-              <h4 class="title"><a href="">Dolor Sitema</a></h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
-            <div class="box">
-              <div class="icon"><i class="bi bi-bar-chart" style="color: #3fcdc7;"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
-            <div class="box">
-              <div class="icon"><i class="bi bi-binoculars" style="color:#41cf2e;"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
-            <div class="box">
-              <div class="icon"><i class="bi bi-brightness-high" style="color: #d6ff22;"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
-            <div class="box">
-              <div class="icon"><i class="bi bi-calendar4-week" style="color: #4680ff;"></i></div>
-              <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-              <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-            </div>
-          </div>
-
-        </div> --}}
-
       </div>
     </section><!-- End Services Section -->
 
-    <!-- ======= Profile Section ======= -->
-    <section id="team">
-      <div class="container" data-aos="fade-up">
-        <div class="section-header">
-          <h3>Profil Pejabat</h3>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="100">
-            <div class="member">
-              <img src="assets/img/team-1.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Walter White</h4>
-                  <span>Chief Executive Officer</span>
-                  <div class="social">
-                    <a href=""><i class="bi bi-twitter"></i></a>
-                    <a href=""><i class="bi bi-facebook"></i></a>
-                    <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""><i class="bi bi-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="200">
-            <div class="member">
-              <img src="assets/img/team-2.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Sarah Jhonson</h4>
-                  <span>Product Manager</span>
-                  <div class="social">
-                    <a href=""><i class="bi bi-twitter"></i></a>
-                    <a href=""><i class="bi bi-facebook"></i></a>
-                    <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""><i class="bi bi-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="300">
-            <div class="member">
-              <img src="assets/img/team-3.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>William Anderson</h4>
-                  <span>CTO</span>
-                  <div class="social">
-                    <a href=""><i class="bi bi-twitter"></i></a>
-                    <a href=""><i class="bi bi-facebook"></i></a>
-                    <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""><i class="bi bi-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="400">
-            <div class="member">
-              <img src="assets/img/team-4.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Amanda Jepson</h4>
-                  <span>Accountant</span>
-                  <div class="social">
-                    <a href=""><i class="bi bi-twitter"></i></a>
-                    <a href=""><i class="bi bi-facebook"></i></a>
-                    <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""><i class="bi bi-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Team Section -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact">

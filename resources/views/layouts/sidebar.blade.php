@@ -27,12 +27,6 @@
         </a>
       </li><!-- End Penindakan Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link  {{ Request::is('laporan*') ? '' : 'collapsed' }}" href="/laporan">
-          <i class="bi bi-bar-chart"></i><span>Laporan</span>
-        </a>
-      </li><!-- End Pelaporan Nav -->
-
       @can('admin')   
         <li class="nav-heading">Administrator</li>
         

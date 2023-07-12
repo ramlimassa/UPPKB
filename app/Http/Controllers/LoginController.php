@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -22,7 +24,6 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        // dd('berhasil login');
 
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
@@ -44,4 +45,32 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+
+
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required',
+            'newpassword' => 'required|min:8|different:password',
+            'confirmpassword' => 'required|same:newpassword',
+        ]);
+    
+        $user = Auth::user();
+        $currentPassword = $request->input('password');
+        $newPassword = $request->input('newpassword');
+    
+        if (Hash::check($currentPassword, $user->password)) {
+            $user->password = Hash::make($newPassword);
+            $user->save();
+    
+            Alert::success('Success', 'Password Berhasil Diubah');
+            return redirect('/dashboard');
+        }
+        
+        Alert::error('Error', 'Change Password Error');
+        return redirect()->back();
+    }    
+
+
 }

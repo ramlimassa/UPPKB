@@ -14,22 +14,14 @@
         @csrf
 
           <div id="reader" width="600px"></div>
-          <div class="col-12">
-            <label for="result" class="form-label">Nomor Uji Kendaraan (STUK)</label>
-              <input type="text" name="result" class="form-control" id="result" readonly>
-            </div>
           <div class="col-6">
-            <label for="no_uji" class="form-label">Nomor Uji Kendaraan (STUK)</label>
-            <select name="pendaftaran_id" id="pendaftaran_id" class="form-select" aria-label="Default select example">
-              <option value=""> Pilih </option>
-              @foreach ($pendaftarans as $item)
-                <option value="{{ $item->id }}">{{ $item->no_uji }}</option>  
-              @endforeach
-            </select>
-          </div>
+            <label for="result" class="form-label">Nomor Uji Kendaraan (STUK)</label>
+              <input type="text" name="result" class="form-control" id="result">
+            </div>
+
           <div class="col-6">
             <label for="no_reg_kendaraan" class="form-label">Nomor Registrasi Kendaraan</label>
-            <input type="text" class="form-control @error('no_reg_kendaraan') is-invalid @enderror" value="{{ isset($pendataan) ? $pendataan->no_reg_kendaraan : old('no_reg_kendaraan') }}" id="no_reg_kendaraan" readonly>
+            <input type="text" class="form-control @error('no_reg_kendaraan') is-invalid @enderror" value="{{ isset($pendataan) ? $pendataan->no_reg_kendaraan : old('no_reg_kendaraan') }}" id="no_reg_kendaraan" disabled>
             @error('no_reg_kendaraan')
             <div class="invalid-feedback">
               {{ $message }}
@@ -38,7 +30,7 @@
           </div>
           <div class="col-6">
             <label for="namaPK" class="form-label">Nama Pemilik Kendaraan</label>
-            <input type="text" class="form-control @error('namaPK') is-invalid @enderror" value="{{ isset($pendataan) ? $pendataan->namaPK : old('namaPK') }}"  id="namaPK" readonly >
+            <input type="text" class="form-control @error('namaPK') is-invalid @enderror" value="{{ isset($pendataan) ? $pendataan->namaPK : old('namaPK') }}"  id="namaPK" disabled >
             @error('namaPK')
             <div class="invalid-feedback">
               {{ $message }}
@@ -47,7 +39,7 @@
           </div>
           <div class="col-6">
             <label for="alamatPK" class="form-label">Alamat Pemilik Kendaraan</label>
-            <input type="text" name="alamatPK" class="form-control @error('alamatPK') is-invalid @enderror" value="{{ isset($pendataan) ? $pendataan->alamatPK : old('alamatPK') }}" id="alamatPK" readonly>
+            <input type="text" name="alamatPK" class="form-control @error('alamatPK') is-invalid @enderror" value="{{ isset($pendataan) ? $pendataan->alamatPK : old('alamatPK') }}" id="alamatPK" disabled>
             @error('alamatPK')
             <div class="invalid-feedback">
               {{ $message }}
@@ -56,7 +48,7 @@
           </div>
           <div class="col-6">
             <label for="jbi" class="form-label">JBI / JBKI</label>
-            <input type="text" name="jbi" class="form-control @error('jbi') is-invalid @enderror" value="{{ isset($pendataan) ? $pendataan->jbi : old('jbi') }}" id="jbi" readonly>
+            <input type="text" name="jbi" class="form-control @error('jbi') is-invalid @enderror" value="{{ isset($pendataan) ? $pendataan->jbi : old('jbi') }}" id="jbi" disabled>
             @error('jbi')
             <div class="invalid-feedback">
               {{ $message }}
@@ -78,7 +70,7 @@
           <div class="col-6">
             <label for="kbbk" class="form-label">Kelebihan Berat Kendaraan (Kg)</label>
             <div class="input-group">
-              <input type="number" name="kbbk" class="form-control @error('kbbk') is-invalid @enderror" value="{{ isset($pendataan) ? $pendataan->kbbk : old('kbbk') }}" id="kbbk">
+              <input type="number" name="kbbk" class="form-control @error('kbbk') is-invalid @enderror" value="{{ isset($pendataan) ? $pendataan->kbbk : old('kbbk') }}" id="kbbk" disabled>
               <span class="input-group-text">Kg</span>
               @error('kbbk')
                 <div class="invalid-feedback">
@@ -90,7 +82,7 @@
           <div class="col-6">
             <label for="kbbp" class="form-label">Kelebihan Berat Kendaraan (%)</label>
             <div class="input-group">
-              <input type="number" name="kbbp" class="form-control @error('kbbp') is-invalid @enderror" value="{{ isset($pendataan) ? $pendataan->kbbp : old('kbbp') }}" id="kbbp">
+              <input type="number" name="kbbp" class="form-control @error('kbbp') is-invalid @enderror" value="{{ isset($pendataan) ? $pendataan->kbbp : old('kbbp') }}" id="kbbp" disabled>
               <span class="input-group-text">%</span>
               @error('kbbp')
                 <div class="invalid-feedback">
@@ -102,119 +94,119 @@
           <div class="col-6">
             <label for="masa" class="form-label">Masa Berlaku</label>
             <div class="input-group mb-3">
-              <input type="date" name="tgl_sertifikat" class="form-control" id="masa1" readonly>
+              <input type="date" name="tgl_sertifikat" class="form-control" id="masa1" disabled>
               <span class="input-group-text">Sampai</span>
-              <input type="date" name="masa_berlaku" class="form-control" id="masa2" readonly>
+              <input type="date" name="masa_berlaku" class="form-control" id="masa2" disabled>
             </div>
           </div>
           <div class="col-6">
             <label for="jenis" class="form-label">Jenis Kendaraan</label>
-            <input type="text" name="jenis" class="form-control" id="jenis" readonly>
+            <input type="text" name="jenis" class="form-control" id="jenis" disabled>
           </div>
 
           <h6 class="card-title pb-0">Cek Dimensi </h6>
           <div class="col-4">
             <label for="std_panjang" class="form-label">Std Panjang</label>
             <div class="input-group">
-              <input type="text" name="std_panjang" class="form-control" id="std_panjang" readonly>
+              <input type="number" name="std_panjang" class="form-control" id="std_panjang" disabled>
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="panjang" class="form-label">Panjang</label>
             <div class="input-group">
-              <input type="text" name="panjang" class="form-control" id="panjang">
+              <input type="number" name="panjang" class="form-control" id="panjang">
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="kel_panjang" class="form-label">Kelebihan Panjang</label>
             <div class="input-group">
-              <input type="text" name="kel_panjang" class="form-control" id="kel_panjang">
+              <input type="number" name="kel_panjang" class="form-control" id="kel_panjang" disabled>
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="std_lebar" class="form-label">Std Lebar</label>
             <div class="input-group">
-              <input type="text" name="std_lebar" class="form-control" id="std_lebar" readonly>
+              <input type="number" name="std_lebar" class="form-control" id="std_lebar" disabled>
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="lebar" class="form-label">Lebar</label>
             <div class="input-group">
-              <input type="text" name="lebar" class="form-control" id="lebar" >
+              <input type="number" name="lebar" class="form-control" id="lebar" >
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="kel_lebar" class="form-label">Kelebihan Lebar</label>
             <div class="input-group">
-              <input type="text" name="kel_lebar" class="form-control" id="kel_lebar">
+              <input type="number" name="kel_lebar" class="form-control" id="kel_lebar" disabled>
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="std_tinggi" class="form-label">Std Tinggi</label>
             <div class="input-group">
-              <input type="text" name="std_tinggi" class="form-control" id="std_tinggi" readonly>
+              <input type="number" name="std_tinggi" class="form-control" id="std_tinggi" disabled>
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="tinggi" class="form-label">Tinggi</label>
             <div class="input-group">
-              <input type="text" name="tinggi" class="form-control" id="tinggi">
+              <input type="number" name="tinggi" class="form-control" id="tinggi">
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="kel_tinggi" class="form-label">Kelebihan Tinggi</label>
             <div class="input-group">
-              <input type="text" name="kel_tinggi" class="form-control" id="kel_tinggi">
+              <input type="number" name="kel_tinggi" class="form-control" id="kel_tinggi" disabled>
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="std_foh" class="form-label">Std FOH</label>
             <div class="input-group">
-              <input type="text" name="std_foh" class="form-control" id="std_foh" readonly>
+              <input type="number" name="std_foh" class="form-control" id="std_foh" disabled>
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="foh" class="form-label">FOH</label>
             <div class="input-group">
-              <input type="text" name="foh" class="form-control" id="foh">
+              <input type="number" name="foh" class="form-control" id="foh">
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="kel_foh" class="form-label">Kelebihan FOH</label>
             <div class="input-group">
-              <input type="text" name="kel_foh" class="form-control" id="kel_foh" >
+              <input type="number" name="kel_foh" class="form-control" id="kel_foh" disabled>
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="std_roh" class="form-label">Std ROH</label>
             <div class="input-group">
-              <input type="text" name="std_roh" class="form-control" id="std_roh" readonly>
+              <input type="number" name="std_roh" class="form-control" id="std_roh" disabled>
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="roh" class="form-label">ROH</label>
             <div class="input-group">
-              <input type="text" name="roh" class="form-control" id="roh">
+              <input type="number" name="roh" class="form-control" id="roh">
               <span class="input-group-text">mm</span>
             </div>
           </div>
           <div class="col-4">
             <label for="kel_roh" class="form-label">Kelebihan ROH</label>
             <div class="input-group mb-3">
-              <input type="text" name="kel_roh" class="form-control" id="kel_roh">
+              <input type="number" name="kel_roh" class="form-control" id="kel_roh" disabled>
               <span class="input-group-text">mm</span>
             </div>
           </div>
@@ -293,55 +285,38 @@
 <script>
   function onScanSuccess(decodedText, decodedResult) {
     $('#result').val(decodedText);
-    let id = decodedText;
-    // html5QrcodeScanner.clear().then(_ => {
-    //   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    //   $.ajax({
+    let value = decodedText;
 
-    //     url: "{{ route('validasi') }}",
-    //     type: 'POST',
-    //     data: {
-    //       _methode : "POST",
-    //       _token: CSRF_TOKEN,
-    //       qr_code : id
-    //     },
-    //     success: function (response){
-    //       // alert(response);
-    //       if(response.status == 404){
+    console.log(decodedResult);
 
-    //         Swal.fire({
-    //           title: 'Nomor Buku Uji tidak ditemukan, Ingin scan ulang?',
-    //           confirmButtonText: 'Ya, Scan Ulang',
-    //           denyButtonText: 'Cancel',
-    //         }).then((result) => {
-    //           if (result.isConfirmed){
-    //             location.reload();
-    //           } else if (result.isDidmissed) {
-    //             console.log("deny")
-    //           }
-    //         });
-    //       } else {
-    //         Swal. fire({
-    //         title: '<strong>Sertifikat Terdaftar</strong>',
-    //         icon: 'success',
-    //         html:
-    //             '<b>Nama : </b> '+response.nama+'</br>
-    //             '<b>Kelas : </b> '+response.kelas+'</br>
-    //         showCloseButton: true, showCancelButton: false,
-    //         focusConfirm: false,
-    //         })
-    //       }
-    //     }
-    //   });
-    // }).catch(error => {
-    //   alert('something wrong');
-    // });
+    $.ajax({
+        method: "GET",
+        url: location.origin + "/jsonpendaftaran",
+        dataType: "json",
+        data: { noujikendaraan: value },
+        success: (response) => {
+          console.log(response);
+          $("#no_reg_kendaraan").val(response.no_reg_kendaraan);
+          $("#namaPK").val(response.namaPK);
+          $("#alamatPK").val(response.alamatPK);
+          $("#jbi").val(response.jbi);
+          $("#masa1").val(response.tgl_sertifikat);
+          $("#masa2").val(response.masa_berlaku);
+          $("#jenis").val(response.jenis);
+          $("#std_panjang").val(response.panjang);
+          $("#std_lebar").val(response.lebar);
+          $("#std_tinggi").val(response.tinggi);
+          $("#std_roh").val(response.julur_blk);
+          $("#std_foh").val(response.julur_dpn);
+        },
+        error: (xhr, status, error) => {
+          console.log(xhr.responseText);
+        }
+      });
+
   }
 
   function onScanFailure(error) {
-    // handle scan failure, usually better to ignore and keep scanning.
-    // for example:
-    // console.warn(`Code scan error = ${error}`);
   }
 
   let html5QrcodeScanner = new Html5QrcodeScanner(
@@ -351,3 +326,54 @@
   html5QrcodeScanner.render(onScanSuccess, onScanFailure);
 
 </script>
+
+<script>
+  function calculateExcess(inputId, stdInputName, outputId) {
+    var input = parseInt(document.getElementById(inputId).value);
+    var stdInput = parseInt(document.getElementsByName(stdInputName)[0].value);
+    var excess = input - stdInput;
+    
+    if (excess < 0) {
+      excess = 0;
+    }
+    
+    document.getElementById(outputId).value = excess;
+  }
+
+  document.getElementById('berat').addEventListener('input', function() {
+    var berat = parseInt(document.getElementById('berat').value);
+    var maksimal = parseInt(document.getElementsByName('jbi')[0].value);
+    var kelebihan = berat - maksimal;
+    var persen = (kelebihan / maksimal) * 100;
+    
+    if (kelebihan < 0) {
+      kelebihan = 0;
+      persen = 0;
+    }
+    
+    document.getElementById('kbbk').value = kelebihan;
+    document.getElementById('kbbp').value = persen.toFixed(1);
+  });
+
+  document.getElementById('panjang').addEventListener('input', function() {
+    calculateExcess('panjang', 'std_panjang', 'kel_panjang');
+  });
+
+  // Tambahkan event listener untuk input lebar, tinggi, foh, dan roh
+  document.getElementById('lebar').addEventListener('input', function() {
+    calculateExcess('lebar', 'std_lebar', 'kel_lebar');
+  });
+
+  document.getElementById('tinggi').addEventListener('input', function() {
+    calculateExcess('tinggi', 'std_tinggi', 'kel_tinggi');
+  });
+
+  document.getElementById('foh').addEventListener('input', function() {
+    calculateExcess('foh', 'std_foh', 'kel_foh');
+  });
+
+  document.getElementById('roh').addEventListener('input', function() {
+    calculateExcess('roh', 'std_roh', 'kel_roh');
+  });
+</script>
+

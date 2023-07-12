@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('tujuan');
             $table->string('pengemudi');
             $table->string('sim');
-            $table->string('kelengkapan_berkas');
+            $table->json('kelengkapan_berkas');
             $table->string('pelanggaran');
             $table->timestamps();
         });

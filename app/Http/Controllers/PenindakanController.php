@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pendataan;
 use App\Models\Penindakan;
+use App\Models\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PenindakanController extends Controller
 {
@@ -14,9 +17,11 @@ class PenindakanController extends Controller
      */
     public function index()
     {
+        $penindakans = Penindakan::with('user', 'pendaftaran', 'pendataan')->get();
         $data = [
             'content' => 'admin/penindakan/index',
             'title' => 'Penindakan',
+            'penindakans' => $penindakans,
         ];
         return view('layouts.wrapper', $data );
     }
@@ -28,7 +33,13 @@ class PenindakanController extends Controller
      */
     public function create()
     {
-        //
+        $pendataans = Pendataan::all();
+        $data = [
+            'content' => 'admin/penindakan/formpenindakan',
+            'title' => 'Penindakan',
+            'header' => 'Form Penindakan',
+        ];
+        return view('layouts.wrapper', $data, compact ('pendataans') );
     }
 
     /**
@@ -39,7 +50,13 @@ class PenindakanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate (['pendataan_id' => 'required']);
+        $data['user_id'] = auth()->user()->id;
+        $data['jns_pelanggaran'] = json_encode($request->input('jns_pelanggaran'));
+        $data['jns_penindakan'] = json_encode($request->input('jns_penindakan'));
+        Penindakan::create($data);
+        Alert::success('Success', 'Data Berhasil Ditambahkan');
+        return redirect('/penindakan');
     }
 
     /**
@@ -48,9 +65,18 @@ class PenindakanController extends Controller
      * @param  \App\Models\Penindakan  $penindakan
      * @return \Illuminate\Http\Response
      */
-    public function show(Penindakan $penindakan)
+    public function show($id)
     {
-        //
+        $penindakan = Penindakan::findOrFail($id);
+        ///$penindakans = Penindakan::with('pendaftaran', 'pendataan')->get();
+
+        $data = [
+            'content' => 'admin/penindakan/show',
+            'title' => 'Penindakan',
+            'penindakan' => $penindakan,
+        ];
+
+        return view('layouts.wrapper', $data);
     }
 
     /**
@@ -59,9 +85,17 @@ class PenindakanController extends Controller
      * @param  \App\Models\Penindakan  $penindakan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Penindakan $penindakan)
+    public function edit($id)
     {
-        //
+        $pendataans = Pendataan::all();
+        $data = [
+            'content' => 'admin/penindakan/edit',
+            'penindakan' => Penindakan::findOrFail($id),
+            'title' => 'Penindakan',
+            'header' => 'Edit Penindakan',
+            'button' => 'Update'
+        ];
+        return view('layouts.wrapper', $data, compact ('pendataans') );
     }
 
     /**
@@ -71,9 +105,16 @@ class PenindakanController extends Controller
      * @param  \App\Models\Penindakan  $penindakan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Penindakan $penindakan)
+    public function update(Request $request, $id)
     {
-        //
+        $penindakan = Penindakan::find($id);
+        $data = $request->validate (['pendataan_id' => 'required']);
+        $data['user_id'] = auth()->user()->id;
+        $data['jns_pelanggaran'] = json_encode($request->input('jns_pelanggaran'));
+        $data['jns_penindakan'] = json_encode($request->input('jns_penindakan'));
+        $penindakan->update($data);
+        Alert::success('Success', 'Data Berhasil Diupdate');
+        return redirect('/penindakan');
     }
 
     /**
@@ -82,8 +123,13 @@ class PenindakanController extends Controller
      * @param  \App\Models\Penindakan  $penindakan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Penindakan $penindakan)
+    public function destroy($id)
     {
         //
+        $penindakan = Penindakan::findOrFail($id);
+        $penindakan->delete();
+
+        Alert::success('Success', 'Data Berhasil Dihapus');
+        return redirect('/penindakan');
     }
 }

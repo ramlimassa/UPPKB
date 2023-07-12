@@ -27,9 +27,8 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="" data-bs-toggle="modal" data-bs-target="#basicModal">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -39,16 +38,14 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
+              <a class="dropdown-item d-flex align-items-center" href="" data-bs-toggle="modal" data-bs-target="#changePassword">
+                <i class="bi bi-key"></i>
+                <span>Change Password</span>
               </a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
-
-
             <li>
               <form action="/logout" method="post">
                 @csrf
@@ -63,3 +60,95 @@
     </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->
+
+  <div class="modal fade" id="basicModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">My Profile</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="tab-pane fade show active profile-overview" id="profile-overview">
+            <h5 class="card-title">Profile Details</h5>
+            <div class="row">
+              <div class="col-lg-3 col-md-4 label ">Full Name</div>
+              <div class="col-lg-9 col-md-8">{{ auth()->user()->name }}</div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-3 col-md-4 label">User Name</div>
+              <div class="col-lg-9 col-md-8">{{ auth()->user()->username }}</div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-3 col-md-4 label">Email</div>
+              <div class="col-lg-9 col-md-8">{{ auth()->user()->email }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Basic Modal-->
+
+
+  <div class="modal fade" id="changePassword" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Change Password</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="tab-pane fade show active profile-overview" id="profile-overview">
+            <form action="{{ route('change.password') }}" method="POST">
+              @method('put')
+              @csrf
+              <div class="row mb-3">
+                <label for="currentPassword" class="col-md-4 col-lg-4 col-form-label">Current Password</label>
+                <div class="col-md-8 col-lg-8">
+                  <input name="password" type="password" class="form-control" id="currentPassword">
+                </div>
+                @error('password')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+              <div class="row mb-3">
+                <label for="newPassword" class="col-md-4 col-lg-4 col-form-label">New Password</label>
+                <div class="col-md-8 col-lg-8">
+                  <input name="newpassword" type="password" class="form-control" id="newPassword">
+                </div>
+                @error('newpassword')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+
+              <div class="row mb-3">
+                <label for="confirmPassword" class="col-md-4 col-lg-4 col-form-label">Confirm Password</label>
+                <div class="col-md-8 col-lg-8">
+                  <input name="confirmpassword" type="password" class="form-control" id="confirmPassword">
+                </div>
+                @error('confirmpassword')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+
+              <div class="text-center modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Change Password</button>
+              </div>
+            </form><!-- End Change Password Form -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Basic Modal-->

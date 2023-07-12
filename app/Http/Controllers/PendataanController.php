@@ -27,7 +27,7 @@ class PendataanController extends Controller
         // ->get();
 
         $pendataans = Pendataan::with('user', 'pendaftaran')->get();
-
+        // dd($pendataans);
         $data = [ 
             'content' => 'admin/pendataan/index',
             'title' => 'Pendataan',
@@ -78,6 +78,91 @@ class PendataanController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate ([
+            
+            'berat' => 'required',
+            'kbbk' => 'required',
+            'kbbp' => 'required',
+            'panjang' => 'required',
+            'kel_panjang' => 'required',
+            'lebar' => 'required',
+            'kel_lebar' => 'required',
+            'tinggi' => 'required',
+            'kel_tinggi' => 'required',
+            'foh' => 'required',
+            'kel_foh' => 'required',
+            'roh' => 'required',
+            'kel_roh' => 'required',
+            'mengangkut' => 'required',
+            'dari' => 'required',
+            'tujuan' => 'required',
+            'pengemudi' => 'required',
+            'kelengkapan_berkas' => 'required|array',
+            'kelengkapan_berkas.*' => 'required|string',
+            'sim' => 'required',
+            'pelanggaran' => 'required',
+        ]);
+        
+        if (auth()->check()) {
+            $data['user_id'] = auth()->user()->id;
+        }
+        $data['pendaftaran_id'] = Pendaftaran::where('no_uji', $request->input('result'))->first()->id;
+        $data['kelengkapan_berkas'] = json_encode($request->input('kelengkapan_berkas'));
+         Pendataan::create($data);
+        Alert::success('Success', 'Data Berhasil Ditambahkan');
+        return redirect('/pendataan');
+        
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Pendataan  $pendataan
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        
+        $pendataan = Pendataan::findOrFail($id);
+        
+        $data = [
+            'content' => 'admin/pendataan/show',
+            'title' => 'Pendataan',
+            'pendataan' => $pendataan,
+        ];
+
+        return view('layouts.wrapper', $data);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Pendataan  $pendataan
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $pendaftarans = Pendaftaran::all();
+        $data = [
+            'content' => 'admin/pendataan/edit',
+            'pendataan' => Pendataan::findOrFail($id),
+            'title' => 'Pendataan',
+            'header' => 'Edit Pendataan',
+            'button' => 'Update'
+        ];
+        return view('layouts.wrapper', $data, compact ('pendaftarans') );
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\Request  $request
+     * @param  \App\Models\Pendataan  $pendataan
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $pendataan = Pendataan::find($id);
+        $data = $request->validate ([
             'pendaftaran_id' => 'required',
             'berat' => 'required',
             'kbbk' => 'required',
@@ -96,49 +181,20 @@ class PendataanController extends Controller
             'dari' => 'required',
             'tujuan' => 'required',
             'pengemudi' => 'required',
-            'kelengkapan_berkas' => 'required',
+            'kelengkapan_berkas' => 'required|array',
+            'kelengkapan_berkas.*' => 'required|string',
             'sim' => 'required',
             'pelanggaran' => 'required',
         ]);
         
-        $data['user_id']=auth()->user()->id;
-        Pendataan::create($data);
-        Alert::success('Success', 'Data Berhasil Ditambahkan');
+        if (auth()->check()) {
+            $data['user_id'] = auth()->user()->id;
+        }
+        $data['kelengkapan_berkas'] = json_encode($request->input('kelengkapan_berkas'));
+        dd($data);
+        $pendataan->update($data);
+        Alert::success('Success', 'Data Berhasil diupdate');
         return redirect('/pendataan');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pendataan  $pendataan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pendataan $pendataan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pendataan  $pendataan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pendataan $pendataan)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatePendataanRequest  $request
-     * @param  \App\Models\Pendataan  $pendataan
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatePendataanRequest $request, Pendataan $pendataan)
-    {
-        //
     }
 
     /**
@@ -147,9 +203,13 @@ class PendataanController extends Controller
      * @param  \App\Models\Pendataan  $pendataan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pendataan $pendataan)
+    public function destroy($id)
     {
-        //
+        $pendataan = Pendataan::findOrFail($id);
+        $pendataan->delete();
+
+        Alert::success('Success', 'Data Berhasil Dihapus');
+        return redirect('/pendataan');
     }
 
     // public function create_data(Request $request, string $nomor_regist)

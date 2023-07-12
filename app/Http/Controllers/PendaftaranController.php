@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pendaftaran;
+use Dompdf\Dompdf;
+use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -17,14 +18,15 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
-        $users = DB::table('pendaftarans')
-        ->leftJoin('users', 'pendaftarans.user_id', '=', 'users.id')
-        ->get();
+        // $users = DB::table('pendaftarans')
+        // ->leftJoin('users', 'pendaftarans.user_id', '=', 'users.id')
+        // ->get();
+        $pendaftarans = Pendaftaran::with('user',)->get();
 
         $data = [
             'content' => 'admin/pendaftaran/index',
             'title' => 'Pendaftaran',
-            'pendaftarans' => $users,
+            'pendaftarans' => $pendaftarans,
         ];
         return view('layouts.wrapper', $data );
     }
@@ -90,7 +92,7 @@ class PendaftaranController extends Controller
         $data['user_id']=auth()->user()->id;
         Pendaftaran::create($data);
         Alert::success('Success', 'Data Berhasil Ditambahkan');
-        return redirect('/pendataan/create');
+        return redirect('/pendaftaran');
     }
 
     /**
@@ -104,8 +106,15 @@ class PendaftaranController extends Controller
         //get post by ID
         $pendaftaran = Pendaftaran::findOrFail($id);
 
-        //render pendaftaran data
-        return $pendaftaran;
+        
+
+        $data = [
+            'content' => 'admin/pendaftaran/show',
+            'title' => 'Pendaftaran',
+            'pendaftaran' => $pendaftaran,
+        ];
+
+        return view('layouts.wrapper', $data);
     }
 
     /**
@@ -174,7 +183,7 @@ class PendaftaranController extends Controller
         
         $pendaftaran->update($data);
         Alert::success('Success', 'Data Berhasil Diupdate'); //tambahkan direct link
-        return redirect('/pendataan/create/' . "1");
+        return redirect('/pendaftaran');
     }
 
     /**
@@ -186,13 +195,13 @@ class PendaftaranController extends Controller
     public function destroy($id)
     {
         //
-        $pendaftaran = Pendaftaran::find($id);
+        // dd($id);
+        $pendaftaran = Pendaftaran::where("id", $id)->first();
+        // $pendaftaran = Pendaftaran::findOrFail($id);
+        // dd($pendaftaran);
         $pendaftaran->delete();
         Alert::success('Success', 'Data Berhasil Dihapus');
         return redirect('/pendaftaran');
     }
-
-
-
-
+    
 }

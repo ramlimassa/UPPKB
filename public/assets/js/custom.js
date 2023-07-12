@@ -2,6 +2,8 @@ const pendaftarnid = document.getElementById("pendaftaran_id");
 pendaftarnid.addEventListener("change", (e) => {
     const value = e.target.value;
 
+    console.log(value);
+
     $(() => {
         $.ajax({
             method: "GET",
@@ -9,7 +11,7 @@ pendaftarnid.addEventListener("change", (e) => {
             dataType: "json",
             data: { noujikendaraan: value },
             success: (response) => {
-                console.log(response);
+                console.log("blbl", value, response);
                 $("#no_reg_kendaraan").attr("value", response.no_reg_kendaraan);
                 $("#namaPK").attr("value", response.namaPK);
                 $("#alamatPK").attr("value", response.alamatPK);

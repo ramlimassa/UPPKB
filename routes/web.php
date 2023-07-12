@@ -1,12 +1,16 @@
 <?php
 
+
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QrController;
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PendataanController;
 use App\Http\Controllers\PenindakanController;
 use App\Http\Controllers\PendaftaranController;
-use App\Http\Controllers\AjaxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +29,6 @@ Route::get('/', function () {
     ]);
 })->middleware('guest');
 
-Route::get('/penindakan', function () {
-    return view('penindakan', [
-        "title" => "Penindakan",
-    ]);
-})->middleware('auth')->name("penindakan");
-
 Route::get('/contact', function () {
     return view('contact', [
         "title" => "Contact",
@@ -46,6 +44,8 @@ Route::get('/contact', function () {
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
+Route::put('/change-password', [LoginController::class, 'changePassword'])->name('change.password');
+
 
 Route::resource('/admin', UserController::class)->middleware('admin');
 Route::resource('/pendataan', PendataanController::class)->middleware('auth');
@@ -53,20 +53,21 @@ Route::resource('/pendaftaran', PendaftaranController::class)->middleware('auth'
 Route::resource('/penindakan', PenindakanController::class)->middleware('auth');
 
 Route::get('/dashboard', function(){
+    $pendaftaran = DB::table('pendaftarans')->count();
+    $pendataan = DB::table('pendataans')->count();
+    $penindakan = DB::table('penindakans')->count();
     $data = [
-    'content' => 'admin/dashboard/index'
+    'content' => 'admin/dashboard/index',
+    "title" => "Dashboard",
     ];
-    return view('layouts.wrapper', $data, [
-        "title" => "Dashboard",
-    ]);
+    return view('layouts.wrapper', compact ('pendaftaran', 'pendataan', 'penindakan'), $data);
 });
 
-Route::get('pendaftaran/{id}/details', 'pendaftaranController@details')->name('pendaftaran.details');
 Route::get('/jsonpendaftaran', [AjaxController::class, 'getjsonpendaftaran'])->name('jsonpendaftaran');
+Route::get('/jsonpendataan', [AjaxController::class, 'getjsonpendataan'])->name('jsonpendataan');
 Route::post('/validasi', [AjaxController::class, 'validasi'])->name('validasi');
 
+Route::get('/search-pendaftaran', [PendaftaranController::class, 'search'])->name('search.pendaftaran');
+Route::get('/qrcode', [QrController::class, 'generatePdfWithQrCode'])->name('qrcode');
 
 
-// pendaftarant('/pendataan/create}', [PendataanController::class, "create"])->name('pendataan')->middleware('auth');
-// Route::get('admin/invoice/create','InvoiceController@create');
-// Route::get('admin/api/product','InvoiceController@getAutocompleteData'); 
